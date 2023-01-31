@@ -30,6 +30,16 @@ class TestDiscount(TestCase):
         prices = [35, 'item1', 'apple', 67]
         expected_discount = None
         self.assertIsNone(expected_discount, discount(prices))
+    
+    def test_list_if_negative_prices(self):
+        prices = [33, -7, 9, -1, 6]
+        with self.assertRaises(ValueError):
+            discount(prices)
+    
+    def test_if_list_of_same_min_prices(self):
+        prices = [15, 5, 5, 5]
+        expected_discount = 5
+        self.assertEqual(expected_discount, discount(prices))
 
 if __name__ == '__main__':
     unittest.main()
